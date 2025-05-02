@@ -1,2 +1,3 @@
-# ICC-USP
-Exercícios básicos para aprender a linguagem C, em razão da matéria de Introdução à Ciência de Computação (ICC) da USP.
+# USP
+
+Arquivos referentes às aulas da USP, Introdução à Ciência de Computação e ferramentas.
