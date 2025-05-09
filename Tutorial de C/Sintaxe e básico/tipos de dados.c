@@ -40,7 +40,7 @@ int main(){
     // long double - Números com ponto flutuante.
     //               Valores de 3.4E-4932 até 1.1E+4932.
     //               Precisão de 19 casas decimais.
-    //               Ocupa 10 bytes na memória.
+    //               Ocupa 16 bytes na memória.
     long double n7 = 1.0;
 
     // ---------- ARRAYS ----------
