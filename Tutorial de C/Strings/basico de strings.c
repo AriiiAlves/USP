@@ -191,5 +191,28 @@ int main(){
 
     // strcat() - Junta duas strings
 
+    // ---------------- OUTRAS FUNÇÕES (não testado) ----------------
+
+    char frasequalquer[100];
+    char frasequalquer2[100];
+    char cpf[100] = "123 456 789 06";
+    int idade = 12;
+    int borboletas = 5;
+    int n1,n2,n3,n4;
+
+    // sprintf() - Escreve para dentro de uma string (salva texto formatado na string)
+    sprintf(frasequalquer, "Meu nome é Ariel, tenho %d anos e hoje vi %d borboletas.\n", idade, borboletas);
+        
+    // OBS: Se a string nova for menor que a antiga, restos da string anterior 
+    sprintf(str, "Olá, mundo!");
+    printf("1: %s\n", str);  // Saída: Olá, mundo!
+
+    sprintf(str, "Oi");
+    printf("2: %s\n", str);  // Saída: Oiundo! ← sobrou parte de "mundo!" aqui
+
+    // sscanf() - Lê dados de uma string e separa dados úteis para outras veriáveis
+    sscanf(cpf, "%d %d %d %d", n1, n2, n3);
+    printf("%s", cpf);
+
     return 0;
 }
