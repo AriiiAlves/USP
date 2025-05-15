@@ -7,121 +7,121 @@ int main(){
     // -------- ABRINDO E FECHANDO ARQUIVOS COM FOPEN/FCLOSE --------
 
     /* Aqui, definimos um PONTEIRO para um tipo de estrutura chamada FILE.
-    FILE é um STRUCT definido pelo <stdio.h> que armazena todas as
-    informações necessárias para gerenciar um arquivo:
+    FILE Ã© um STRUCT definido pelo <stdio.h> que armazena todas as
+    informaÃ§Ãµes necessÃ¡rias para gerenciar um arquivo:
 
     - Ponteiro para o arquivo
     - Modo de abertura (leitura, escrita. etc)
     - Estado do buffer
     - etc.
-        Lembrando que o ponteiro é um endereço de memória.
+        Lembrando que o ponteiro Ã© um endereÃ§o de memÃ³ria.
     */
     FILE *aquivo;
 
     /* Aqui, usamos fopen("nome do arquivo.ext","modo&tipo").
-    O modo é como vamos operar com o arquivo. Existem os modos:
+    O modo Ã© como vamos operar com o arquivo. Existem os modos:
 
-    - r -> Leitura. O arquivo PRECISA existir. Ao ser aberto, o conteúdo permanece.
-    - w -> Escrita. O arquivo NÃO PRECISA existir, será criado um novo caso não exista. Ao abrir, o conteúdo é apagado.
-    - a -> Acrescentar/Append. O arquivo NÃO PRECISA existir, será criado um novo caso não exista. Ao abrir, novo conteúdo é adicionado ao fim.
-    - r+ -> Leitura e escrita. O arquivo PRECISA existir. Ao abrir, o conteúdo permanece.
-    - w+ -> Escrita e leitura. O arquivo NÃO PRECISA existir, , será criado um novo caso não exista. Ao abrir, o conteúdo é apagado.
-    - a -> Leitura e append. O arquivo NÃO PRECISA existir. Ao abrir, pode ser lido ou adicionado novo conteúdo no fim.
+    - r -> Leitura. O arquivo PRECISA existir. Ao ser aberto, o conteÃºdo permanece.
+    - w -> Escrita. O arquivo NÃƒO PRECISA existir, serÃ¡ criado um novo caso nÃ£o exista. Ao abrir, o conteÃºdo Ã© apagado.
+    - a -> Acrescentar/Append. O arquivo NÃƒO PRECISA existir, serÃ¡ criado um novo caso nÃ£o exista. Ao abrir, novo conteÃºdo Ã© adicionado ao fim.
+    - r+ -> Leitura e escrita. O arquivo PRECISA existir. Ao abrir, o conteÃºdo permanece.
+    - w+ -> Escrita e leitura. O arquivo NÃƒO PRECISA existir, , serÃ¡ criado um novo caso nÃ£o exista. Ao abrir, o conteÃºdo Ã© apagado.
+    - a -> Leitura e append. O arquivo NÃƒO PRECISA existir. Ao abrir, pode ser lido ou adicionado novo conteÃºdo no fim.
 
        Ao lodo do modo escolhido, coloca-se o tipo de arquivo.
 
-    - b -> Binário (.exe, etc)
+    - b -> BinÃ¡rio (.exe, etc)
     - t -> Texto (.txt)
     */
 
     arquivo = fopen("teste.txt","rt"); // Leitura de texto
 
-    /* Se o fopen retornar NULL, quer dizer que não encontrou o
-       arquivo. O NULL é equivalente a um 0 ou "false" para o if. */
+    /* Se o fopen retornar NULL, quer dizer que nÃ£o encontrou o
+       arquivo. O NULL Ã© equivalente a um 0 ou "false" para o if. */
     if(arquivo){
         printf("Arquivo aberto com sucesso!");
 
-        /* Após abrir com sucesso o arquivo, precisamos FECHÁ-LO, pois:
+        /* ApÃ³s abrir com sucesso o arquivo, precisamos FECHÃ-LO, pois:
 
-        - Libera recursos do sistema (memória reservada)
-        - Garante que os dados sejam SALVOS no arquivo(quando você escreve no arquivo,
-          os dados geralmente vão primeiro para um buffer
-          na memória, para melhorar a performance. O fclose garante que esse buffer seja
+        - Libera recursos do sistema (memÃ³ria reservada)
+        - Garante que os dados sejam SALVOS no arquivo(quando vocÃª escreve no arquivo,
+          os dados geralmente vÃ£o primeiro para um buffer
+          na memÃ³ria, para melhorar a performance. O fclose garante que esse buffer seja
           efetivado no arquivo.
-        - Permite que o arquivo seja reaberto. Se você não fechar o arquivo, pode não
-          conseguir abri-lo novamente, aparece "o arquivo está sendo usado por outro programa"
+        - Permite que o arquivo seja reaberto. Se vocÃª nÃ£o fechar o arquivo, pode nÃ£o
+          conseguir abri-lo novamente, aparece "o arquivo estÃ¡ sendo usado por outro programa"
         */
         fclose(arquivo);
     }
     else{
         // Se fopen retornar NULL
-        printf("Arquivo não encontrado!");
+        printf("Arquivo nÃ£o encontrado!");
     }
 
     fclose(arquivo);
 
-    // ---------------- FUNÇÕES DE ARQUIVOS DE TEXTO ----------------
+    // ---------------- FUNÃ‡Ã•ES DE ARQUIVOS DE TEXTO ----------------
 
     FILE *aquivo;
     arquivo = fopen("teste.txt","rt");
-    int num; // Será utilizado para testes
-    char string[150]; // Será utilizado para testes
+    int num; // SerÃ¡ utilizado para testes
+    char string[150]; // SerÃ¡ utilizado para testes
 
     if(arquivo){
 
         // >>>>>>>>>> FPRINTF <<<<<<<<<<
-        // printf para arquivos. Lembre-se de especificar o ponteiro do arquivo no início.
+        // printf para arquivos. Lembre-se de especificar o ponteiro do arquivo no inÃ­cio.
         fprintf(arquivo,"Teste de escrita com fprintf");
 
         // >>>>>>>>>> FSCANF <<<<<<<<<<
-        // scanf para arquivos. Lê até esbarrar em um espaço ou \n.
-        // Lembre-se de especificar o ponteiro do arquivo no início.
+        // scanf para arquivos. LÃª atÃ© esbarrar em um espaÃ§o ou \n.
+        // Lembre-se de especificar o ponteiro do arquivo no inÃ­cio.
         fscanf(arquivo,"%d", num);
 
         // >>>>>>>>>> FGETS <<<<<<<<<<
-        // Mesma coisa do fgets para prompt. Ele também consegue ler arquivos.
-        // Lembrando que ele lê até encontrar um \n, ou seja, frases inteiras.
+        // Mesma coisa do fgets para prompt. Ele tambÃ©m consegue ler arquivos.
+        // Lembrando que ele lÃª atÃ© encontrar um \n, ou seja, frases inteiras.
         fgets(string, 10, arquivo);
 
         // >>>>>>>>>> FPUTS <<<<<<<<<<
         // Escreve uma linha de texto no arquivo (texto + \n)
-        fputs(string, arquivo);
+        fputs("Teste de escrita com fputs", arquivo);
 
         // >>>>>>>>>> FEOF <<<<<<<<<<
-        // Verifica se chegou ao final do arquivo. Retorna 0 (Falso) se ainda não chegar ao fim.
-        // OBS: O FEOF NÃO ANTECIPA  o fim do arquivo. Ele só retorna 1 (True) após uma tentativa falha.
-        //      Assim, se usado como abaixo, a última vez repetirá.
+        // Verifica se chegou ao final do arquivo. Retorna 0 (Falso) se ainda nÃ£o chegar ao fim.
+        // OBS: O FEOF NÃƒO ANTECIPA  o fim do arquivo. Ele sÃ³ retorna 1 (True) apÃ³s uma tentativa falha.
+        //      Assim, se usado como abaixo, a Ãºltima vez repetirÃ¡.
 
         // >>>>>>>>>> USANDO FEOF (INCORRETO) <<<<<<<<<<
         while (!feof(arquivo)) {
             fscanf(arquivo, "%d", &num);
-            printf("Número lido: %d\n", num);
+            printf("NÃºmero lido: %d\n", num);
         }
 
         // >>>>>>>>>> EVITANDO FEOF <<<<<<<<<<
-        // O FEOF NÃO DEVE SER USADO COMO CONDIÇÃO PRINCIPAL do seu código. Há várias alternativas.
+        // O FEOF NÃƒO DEVE SER USADO COMO CONDIÃ‡ÃƒO PRINCIPAL do seu cÃ³digo. HÃ¡ vÃ¡rias alternativas.
 
         // USANDO FSCANF PARA END OF FILE
 
-        // Útil pois fscanf retorna 1 se conseguir fazer a leitura esperada.
-        // OBS: Se o fscanf ler uma string ao invés do número esperado, retornará 0.
+        // Ãštil pois fscanf retorna 1 se conseguir fazer a leitura esperada.
+        // OBS: Se o fscanf ler uma string ao invÃ©s do nÃºmero esperado, retornarÃ¡ 0.
 
         while(fscanf(arquivo, "%d", &num) == 1){
-            printf("Número lido: %d\n", num);
+            printf("NÃºmero lido: %d\n", num);
         }
 
         // USANDO GETC()
 
-        // O getc() é uma função que lê o próximo caractere do arquivo.
-        // Ele é ideal pelo fato de int, float, etc, poderem ser representados como strings.
+        // O getc() Ã© uma funÃ§Ã£o que lÃª o prÃ³ximo caractere do arquivo.
+        // Ele Ã© ideal pelo fato de int, float, etc, poderem ser representados como strings.
         char ch;
 
         while((ch=getc(arquivo)) != EOF){
-            printf("Número lido: %d\n", num);
+            printf("NÃºmero lido: %d\n", num);
         }
 
-        // temos que atribuir o getc a uma variável para ser realizda a leitura
-        // desse endereço de memória. Depois, comparamos com EOF, que varia dependendo
+        // temos que atribuir o getc a uma variÃ¡vel para ser realizda a leitura
+        // desse endereÃ§o de memÃ³ria. Depois, comparamos com EOF, que varia dependendo
         // do sistema operacional ou linguagem. Pode ser -1, por exemplo.
 
         fclose(arquivo);
