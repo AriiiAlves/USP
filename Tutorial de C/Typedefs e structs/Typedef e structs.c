@@ -41,12 +41,16 @@ int main()
     /*Acima, criamos uma struct ponto. O nome ponto pode ser utilizadp
       para criarmos mais structs a partir desse. O que criamos é apenas
       um modelo.*/
-    
+
     // 2° Forma
+
+    struct ponto p5 = {10,5};
+    
+    // 3° Forma
     struct{
       int x;
       int y;
-    } p1;
+    } p1, p2;
     
     /* Acima, após especificar os tipos de dados que o struct receberá,
        criamos dois structs p1 e p2. p1 e p2 contém, ambos x e y. Porém
@@ -58,12 +62,11 @@ int main()
     
     // ------------- ACESSANDO STRUCTS ------------- 
     
-    // 1° Forma
     p1.x = 5;
     p1.y = 10;
-    
-    // 2° Forma
-    struct ponto p2 = {10,5}; 
+
+    p2.x = 10;
+    p2.y = 5;
     
     if(p1.x == 5) printf("p1.x é 5!\n");
     if(p1.y == 10) printf("p1.y é 10!\n");
