@@ -1,6 +1,8 @@
-# Instruções
+# Tutorial de C
 
-Aqui é possível encontrar tutoriais e pontos principais para trabalhar com certas funcionalidades em C.
+Aqui estão diversos códigos explicando e mostrando como utilizar as ferramentas básicas em C, além de algumas coisas adicionais, como algoritmos úteis.
+
+Abaixo é possível encontrar tutoriais e pontos principais para trabalhar com certas funcionalidades em C.
 
 https://www.geeksforgeeks.org/strings-in-c/
 
