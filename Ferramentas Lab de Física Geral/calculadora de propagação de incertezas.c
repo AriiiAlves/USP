@@ -2,14 +2,14 @@
 #include <math.h> // Caso seja necessario usar pow(), pi, etc.
 
 // Cria uma estrutura que tera x como numero e var como incerteza
-struct number {
+typedef struct {
   double x;
   double var;
-};
+} number;
 
 // Operacao de adicao
-struct number add(struct number op1, struct number op2){
-    struct number result = {0,0};
+number add(number op1, number op2){
+    number result = {0,0};
     
     result.x = op1.x + op2.x;
     result.var = op1.var + op2.var;
@@ -18,8 +18,8 @@ struct number add(struct number op1, struct number op2){
 }
 
 // Operacao de subtracao
-struct number sub(struct number op1, struct number op2){
-    struct number result = {0,0};
+number sub(number op1, number op2){
+    number result = {0,0};
     
     result.x = op1.x - op2.x;
     result.var = op1.var + op2.var;
@@ -28,8 +28,8 @@ struct number sub(struct number op1, struct number op2){
 }
 
 // Operacao de multiplicacao
-struct number mult(struct number op1, struct number op2){
-    struct number result = {0,0};
+number mult(number op1, number op2){
+    number result = {0,0};
     
     result.x = op1.x * op2.x;
     result.var = op1.x * op2.var + op2.x * op1.var;
@@ -41,8 +41,8 @@ struct number mult(struct number op1, struct number op2){
 }
 
 // Operacao de potencia
-struct number pot(struct number op1, int n){
-    struct number result = {0,0};
+number pot(number op1, int n){
+    number result = {0,0};
     
     if(n > 1){
     
@@ -70,8 +70,8 @@ struct number pot(struct number op1, int n){
 }
 
 // Operacao de multiplicacao por constante
-struct number mult_by_const(struct number op1, double constant){
-    struct number result = {0,0};
+number mult_by_const(number op1, double constant){
+    number result = {0,0};
     
     result.x = op1.x * constant;
     result.var = op1.var * constant;
@@ -80,8 +80,8 @@ struct number mult_by_const(struct number op1, double constant){
 }
 
 // Operacao de divisao
-struct number divi(struct number op1, struct number op2){
-    struct number result = {0,0};
+number divi(number op1, number op2){
+    number result = {0,0};
     
     result.x = op1.x / op2.x;
     result.var = (op1.x * op2.var + op2.x * op1.var)/pow(op2.x,2);
@@ -89,30 +89,67 @@ struct number divi(struct number op1, struct number op2){
     return result;
 }
 
-// Mostra a estrutura na forma (x +- var) em notacao cientifica
-// com 14 casas apos a virgula
-void show(struct number result){
-    printf("\nresult: (%.14e +- %.14e)",result.x, result.var);
+// Operação de seno
+number seno(number op){
+    number result = {0,0};
+
+    result.x = sin(op.x);
+    result.var = cos(op.x) * op.var;
+
+    return result;
+}
+
+// Operação de cosseno
+number cosseno(number op){
+    number result = {0,0};
+
+    result.x = cos(op.x);
+    result.var = sin(op.x) * op.var;
+
+    return result;
+}
+
+// Operação de tangente
+number tangente(number op){
+    number result = {0,0};
+
+    result = divi(seno(op),cosseno(op));
+
+    return result;
+}
+
+// Operação de cotangente
+number cotangente(number op){
+    number result = {0,0};
+
+    result = divi(cosseno(op),seno(op));
+
+    return result;
+}
+
+// Mostra a estrutura na forma (x +- var) (modifique para notação científica ou as casas decimais se necessário)
+void show(number result){
+    printf("result: (%.3lf +- %.3lf)\n",result.x, result.var);
 }
 
 // Funcao principal
 int main() {
     // Exemplo: coeficiente angular da reta Forca x Deflexao
-    struct number n1 = {3201.9, 0.7};
-    struct number n2 = {1057.6, 0.2};
-    struct number n3 = {49, 2};
-    struct number n4 = {15, 2};
+    number n1 = {3201.9, 0.7};
+    number n2 = {1057.6, 0.2};
+    number n3 = {49, 2};
+    number n4 = {15, 2};
 
     // Diferenca de forcas
-    struct number deltaF = sub(n1, n2);
+    number deltaF = sub(n1, n2);
     show(deltaF);
 
     // Diferenca de deflexoes
-    struct number deltaX = sub(n3, n4);
+    number deltaX = sub(n3, n4);
     show(deltaX);
 
     // Coeficiente angular da reta (k = deltaF / deltaX)
-    struct number k = divi(deltaF, deltaX);
+    number k = divi(deltaF, deltaX);
     show(k);
 
     return 0;
